@@ -7,7 +7,7 @@ const SightingsSection = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Fetch data from db.json (port 3002)
+  
   useEffect(() => {
     fetch("http://localhost:3002/sightings")
       .then((response) => {
@@ -34,7 +34,6 @@ const SightingsSection = () => {
     );
   }
 
-  // Show only the latest 3 sightings
   const limitedSightings = sightings.slice(0, 3);
 
   return (

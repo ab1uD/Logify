@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
-  const navigate = useNavigate(); // ✅ useNavigate must be inside component
+  const navigate = useNavigate(); 
 
   return (
     <section className="hero text-center text-light d-flex align-items-center justify-content-center">

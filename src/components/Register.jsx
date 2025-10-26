@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; 
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -7,7 +8,8 @@ const Register = () => {
     password: "",
   });
 
-  // Handle input changes
+  const navigate = useNavigate(); 
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData((prevData) => ({
@@ -16,7 +18,6 @@ const Register = () => {
     }));
   };
 
-  // Handle form submission (no await)
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -36,6 +37,10 @@ const Register = () => {
       .then((data) => {
         alert("User registered successfully!");
         setFormData({ username: "", email: "", password: "" });
+
+
+        
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Error registering user:", error);

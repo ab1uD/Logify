@@ -1,11 +1,11 @@
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #fdfdfd;
+  background-color: rgb(194, 232, 127) ;
 }
 
 .hero {
   background: linear-gradient(rgba(0, 60, 20, 0.6), rgba(0, 60, 20, 0.6)),
-    url("https://source.unsplash.com/1600x800/?wildlife,forest");
+    url("https://i.pinimg.com/736x/91/74/cd/9174cd4d388c7913660a5ba81ac662cb.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;

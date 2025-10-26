@@ -34,7 +34,7 @@ const ContactUs = () => {
       })
       .then((data) => {
         alert("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" }); // clear form
+        setFormData({ name: "", email: "", message: "" }); 
       })
       .catch((error) => {
         console.error("Error sending message:", error);

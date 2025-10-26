@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; 
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,7 +9,6 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Fetch users from db.json
     fetch("http://localhost:3002/users")
       .then((response) => {
         if (!response.ok) {
@@ -18,7 +17,7 @@ const Login = () => {
         return response.json();
       })
       .then((users) => {
-        // Find a matching user
+    
         const validUser = users.find(
           (user) => user.email === email && user.password === password
         );
@@ -27,7 +26,6 @@ const Login = () => {
           alert(`Welcome back, ${validUser.username}!`);
           localStorage.setItem("loggedInUser", JSON.stringify(validUser));
 
-          // ✅ Redirect to dashboard dynamically
           navigate(`/report/${validUser.username}`);
         } else {
           alert("Invalid email or password. Please try again.");
@@ -76,9 +74,16 @@ const Login = () => {
           />
         </div>
 
-        <button type="submit" className="btn btn-success w-100">
+        <button type="submit" className="btn btn-success w-100 mb-3">
           Login
         </button>
+
+        <p className="text-center mb-0">
+          Don’t have an account?{" "}
+          <Link to="/register" className="text-success fw-bold text-decoration-none">
+            Register here
+          </Link>
+        </p>
       </form>
     </div>
   );

@@ -1,13 +1,20 @@
 import React from "react";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser"); 
+    alert("You have been logged out successfully.");
+    navigate("/"); 
+  };
+
   return (
-    <Navbar expand="lg" bg="light" fixed="top" className="shadow-sm py-3">
+    <Navbar expand="lg" bg="light"  className="shadow-sm py-3">
       <Container>
-        {/* Brand */}
+    
         <Navbar.Brand
           as={NavLink}
           to="/"
@@ -19,7 +26,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="logify-navbar" />
         <Navbar.Collapse id="logify-navbar">
           <Nav className="ms-auto align-items-center">
-            {/* About Us */}
+         
             <NavLink
               className={({ isActive }) =>
                 "nav-link mx-2 fw-semibold" +
@@ -30,7 +37,6 @@ const NavBar = () => {
               About 
             </NavLink>
 
-            {/* Report (Your requested structure) */}
             <NavLink
               className={({ isActive }) =>
                 "nav-link mx-2 fw-semibold" +
@@ -38,10 +44,9 @@ const NavBar = () => {
               }
               to="/contact"
             >
-             Contact 
+              Contact 
             </NavLink>
 
-            {/* Login */}
             <NavLink
               className={({ isActive }) =>
                 "nav-link mx-2 fw-semibold" +
@@ -52,17 +57,23 @@ const NavBar = () => {
               Login
             </NavLink>
 
-            {/* Register */}
-        <NavLink
+            <NavLink
               className={({ isActive }) =>
                 "nav-link mx-2 fw-semibold" +
                 (isActive ? " active fw-bold text-success" : " text-dark")
               }
               to="/register"
+            >
+              Register
+            </NavLink>
 
-            > Register</NavLink>
-             
-    
+            <Button
+              variant="outline-success"
+              className="mx-2 fw-semibold"
+              onClick={handleLogout}
+            >
+              Logout
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -71,4 +82,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-
