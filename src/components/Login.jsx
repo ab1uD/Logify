@@ -1,106 +1,84 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
 const Login = () => {
-  const [isSignup, setIsSignup] = useState(false);
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(`${isSignup ? "Signup" : "Login"} successful for`, form.username);
-    navigate("/sightings");
+
+    // Fetch users from db.json
+    fetch("http://localhost:3002/users")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        return response.json();
+      })
+      .then((users) => {
+        // Find a matching user
+        const validUser = users.find(
+          (user) => user.email === email && user.password === password
+        );
+
+        if (validUser) {
+          alert(`Welcome back, ${validUser.username}!`);
+          localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+
+          // ✅ Redirect to dashboard dynamically
+          navigate(`/report/${validUser.username}`);
+        } else {
+          alert("Invalid email or password. Please try again.");
+        }
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+        alert("An error occurred while logging in.");
+      });
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=1950&q=80')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
+    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <form
         onSubmit={handleSubmit}
-        style={{
-          backgroundColor: "rgba(255,255,255,0.9)",
-          padding: "2rem",
-          borderRadius: "10px",
-          width: "320px",
-          textAlign: "center",
-          boxShadow: "0 4px 8px rgba(0,0,0,0.3)",
-        }}
+        className="p-4 rounded shadow bg-white"
+        style={{ width: "350px" }}
       >
-        <h2>{isSignup ? "Sign Up" : "Login"}</h2>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={form.username}
-          onChange={handleChange}
-          style={{
-            width: "100%",
-            padding: "10px",
-            margin: "10px 0",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          style={{
-            width: "100%",
-            padding: "10px",
-            margin: "10px 0",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
-          }}
-        />
+        <h4 className="text-center mb-4">Login Page</h4>
 
-        <button
-          type="submit"
-          style={{
-            width: "100%",
-            padding: "10px",
-            borderRadius: "5px",
-            border: "none",
-            backgroundColor: "#4caf50",
-            color: "#fff",
-            fontSize: "1rem",
-            cursor: "pointer",
-          }}
-        >
-          {isSignup ? "Sign Up" : "Login"}
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email address
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Password
+          </label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <button type="submit" className="btn btn-success w-100">
+          Login
         </button>
-
-        <p
-          onClick={() => setIsSignup(!isSignup)}
-          style={{
-            marginTop: "1rem",
-            color: "#4caf50",
-            cursor: "pointer",
-            fontWeight: "bold",
-          }}
-        >
-          {isSignup
-            ? "Already have an account? Log in"
-            : "Don’t have an account? Sign up"}
-        </p>
       </form>
     </div>
   );

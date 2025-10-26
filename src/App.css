@@ -1,42 +1,30 @@
-.App {
-  text-align: center;
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fdfdfd;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hero {
+  background: linear-gradient(rgba(0, 60, 20, 0.6), rgba(0, 60, 20, 0.6)),
+    url("https://source.unsplash.com/1600x800/?wildlife,forest");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h2 {
+  font-weight: 700;
+  color: #1b4332;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.btn-success {
+  background-color: #2d6a4f;
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-success:hover {
+  background-color: #1b4332;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-.container {
-  background: url("https://images.pexels.com/photos/34362256/pexels-photo-34362256.jpeg") center/cover no-repeat;
-  object-fit: cover;
+footer {
+  letter-spacing: 0.5px;
 }

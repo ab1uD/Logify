@@ -1,48 +1,26 @@
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import SightingList from "./components/SightingList";
-import SightingForm from "./components/SightingForm";
-import { useState, useEffect } from "react";
+import React from "react";
+
+import "./App.css";
+import HeroSection from "./components/HeroSection";
+import AboutUs from "./components/AboutUs";
+import SightingsSection from "./components/SightingsSection";
+import Testimonials from "./components/Testimonials";
+import Footer from "./components/Footer";
 
 function App() {
-  const [sightings, setSightings] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3004/sightings")
-      .then((res) => res.json())
-      .then((data) => setSightings(data))
-      .catch((err) => console.error("Fetch error:", err));
-  }, []);
-
-  const addSighting = (newSighting) => setSightings([...sightings, newSighting]);
-  const deleteSighting = (id) => {
-    fetch(`http://localhost:3004/sightings/${id}`, { method: "DELETE" })
-      .then(() => setSightings(sightings.filter((s) => s.id !== id)))
-      .catch((err) => console.error("Delete error:", err));
-  };
-
   return (
     <>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/sightings"
-          element={<SightingList onDelete={deleteSighting} />}
-        />
-        <Route
-          path="/report"
-          element={<SightingForm addSighting={addSighting} />}
-        />
-      </Routes>
+      <HeroSection />
+      <AboutUs />
+      <SightingsSection />
+      <Testimonials />
+      <Footer />
     </>
   );
 }
 
 export default App;
+
 
 
 
