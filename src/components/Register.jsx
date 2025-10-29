@@ -39,7 +39,7 @@ const Register = () => {
         setFormData({ username: "", email: "", password: "" });
 
 
-        
+
         navigate("/login");
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ const Register = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div id="register" className="d-flex justify-content-center align-items-center vh-100 bg-light">
       <form
         onSubmit={handleSubmit}
         className="p-4 rounded shadow bg-white"

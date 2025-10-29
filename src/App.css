@@ -28,3 +28,35 @@ h2 {
 footer {
   letter-spacing: 0.5px;
 }
+
+#loginpart {
+  background-image: url("https://i.pinimg.com/736x/a3/b6/ce/a3b6cedef1ee1afd75a83eff986170ae.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#about{
+background: 
+    url("https://i.pinimg.com/736x/01/de/5c/01de5c43e1e4ad350cebf3e5afec92bf.jpg");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  font-weight: bold;
+  font-size:large ;
+  height: 100vh;}
+
+  #register{
+      background-image: url("https://i.pinimg.com/736x/a3/b6/ce/a3b6cedef1ee1afd75a83eff986170ae.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  }
+
+
